@@ -22,7 +22,18 @@ const deviceModule = require('..').device;
 const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
-var blueLedGpio, yellowLedGpio, intervalTimer;
+var blueLedGpio, yellowLedGpio, blueButtonGpio, intervalTimer;
+
+blueButtonGpio = gpio.export(6, {
+   ready: function() {
+      console.log("Blue Button Ready");
+   }
+});
+blueButtonGpio.read(6, function (err, value) {
+   if(err) throw err;
+   blueLedGpio.set();
+   setTimeout(function() { blueLedGpio.reset(); }, 2000);
+})
 
 blueLedGpio = gpio.export(23, {
    ready: function() {
