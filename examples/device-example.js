@@ -37,7 +37,7 @@ var gpio18 = gpio.export(18, {
    // read or write to the header right away. Place your logic in this ready
    // function to guarantee everything will get fired properly
    ready: function() {
-      console.log("8 Ready")
+      console.log("18 Ready")
    }
 });
 
@@ -59,7 +59,9 @@ var gpio24 = gpio.export(24, {
    }
 });
 
-gpio18.set();
+gpio18.set(function() {
+   console.log(gpio18.value);    // should log 1
+});
 
 
 function processTest(args) {
