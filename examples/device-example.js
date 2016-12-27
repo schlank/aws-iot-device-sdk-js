@@ -26,12 +26,9 @@ const cmdLineProcess = require('./lib/cmdline');
 var gpio = require("gpio");
 var gpio18, gpio24, intervalTimer;
 
-// Flashing lights if LED connected to GPIO22
 gpio18 = gpio.export(18, {
    ready: function() {
       intervalTimer = setInterval(function() {
-         gpio18.set();
-         setTimeout(function() { gpio18.reset(); }, 500);
       }, 1000);
    }
 });
@@ -59,7 +56,7 @@ setTimeout(function() {
       // unexport takes a callback which gets fired as soon as unexporting is done
       process.exit(); // exits your node program
    });
-}, 10000)
+}, 10000);
 
 
 function processTest(args) {
@@ -137,7 +134,16 @@ function processTest(args) {
       });
    device
       .on('message', function(topic, payload) {
+
+         if(topic == "topic_2") {
+            gpio18.set();
+            setTimeout(function() { gpio18.reset(); }, 2000);
+         }
+
          console.log('message', topic, payload.toString());
+
+
+
       });
 }
 
