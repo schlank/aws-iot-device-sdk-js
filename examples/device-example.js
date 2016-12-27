@@ -24,7 +24,7 @@ const cmdLineProcess = require('./lib/cmdline');
 //begin module
 var blueLedGpio, yellowLedGpio, blueButtonGpio, intervalTimer;
 
-blueButtonGpio = gpio.export(6, {
+blueButtonGpio = gpio.export(13, {
    ready: function() {
       console.log("Blue Button Ready");
       blueButtonGpio.on("change",function (val) {
