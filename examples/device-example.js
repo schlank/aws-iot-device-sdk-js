@@ -24,7 +24,7 @@ const cmdLineProcess = require('./lib/cmdline');
 //begin module
 
 // Calling export with a pin number will export that header and return a gpio header instance
-var gpio8 = gpio.export(8, {
+var gpio18 = gpio.export(18, {
    // When you export a pin, the default direction is out. This allows you to set
    // the pin value to either LOW or HIGH (3.3V) from your program.
    direction: 'out',
@@ -59,7 +59,7 @@ var gpio24 = gpio.export(24, {
    }
 });
 
-gpio8.set();
+gpio18.set();
 
 
 function processTest(args) {
