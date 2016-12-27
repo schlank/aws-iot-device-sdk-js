@@ -159,3 +159,5 @@ if (require.main === module) {
    cmdLineProcess('connect to the AWS IoT service and publish/subscribe to topics using MQTT, test modes 1-2',
       process.argv.slice(2), processTest);
 }
+gpio18.unexport();
+gpio24.unexport();
