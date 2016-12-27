@@ -27,34 +27,33 @@ var blueLedGpio, yellowLedGpio, blueButtonGpio, intervalTimer;
 blueButtonGpio = gpio.export(26, {
    ready: function() {
       console.log("Blue Button Ready");
+      blueButtonGpio.on("change",function (val) {
+         console.log(val);
+         blueLedGpio.set();
+         setTimeout(function() { blueLedGpio.reset(); }, 2000);
+      });
    }
-});
-blueButtonGpio.on("change",function (val) {
-   console.log(val);
-   blueLedGpio.set();
-   setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
 
 blueLedGpio = gpio.export(23, {
    ready: function() {
       console.log("Blue LED Ready");
       intervalTimer = setInterval(function() {
-      }, 1000);
+      }, 2000);
    }
 });
 
 yellowLedGpio = gpio.export(24, {
    ready: function() {
       console.log("Yellow LED Ready");
+      yellowLedGpio.on("change", function (val) {
+         console.log(val);
+         blueLedGpio.set();
+         setTimeout(function() { blueLedGpio.reset(); }, 2000);
+      });
+
    }
 });
-
-yellowLedGpio.on("change", function (val) {
-   console.log(val);
-   blueLedGpio.set();
-   setTimeout(function() { blueLedGpio.reset(); }, 2000);
-});
-
 
 // // Lets assume a different LED is hooked up to pin 4, the following code
 // // will make that LED blink inversely with LED from pin 22
