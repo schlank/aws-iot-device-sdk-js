@@ -22,8 +22,6 @@ const deviceModule = require('..').device;
 const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
-
-var gpio = require("gpio");
 var blueLedGpio, yellowLedGpio, intervalTimer;
 
 blueLedGpio = gpio.export(23, {
@@ -144,8 +142,9 @@ function processTest(args) {
       .on('message', function(topic, payload) {
 
          if(topic == "led") {
-
+            console.log("led");
             if(payload!=null) {
+               console.log(payload.led);
                if(payload.led == "yellow") {
                   yellowLedGpio.set();
                   setTimeout(function() { yellowLedGpio.reset(); }, 2000);
