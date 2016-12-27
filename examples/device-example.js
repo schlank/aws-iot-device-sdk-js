@@ -44,19 +44,19 @@ gpio18 = gpio.export(18, {
 //    }
 // });
 
-// reset the headers and unexport after 10 seconds
-setTimeout(function() {
-   clearInterval(intervalTimer);          // stops the voltage cycling
-   gpio18.removeAllListeners('change');   // unbinds change event
-   gpio18.reset();                        // sets header to low
-   gpio18.unexport();                     // unexport the header
-
-   gpio24.reset();
-   gpio24.unexport(function() {
-      // unexport takes a callback which gets fired as soon as unexporting is done
-      process.exit(); // exits your node program
-   });
-}, 10000);
+// // reset the headers and unexport after 10 seconds
+// setTimeout(function() {
+//    clearInterval(intervalTimer);          // stops the voltage cycling
+//    gpio18.removeAllListeners('change');   // unbinds change event
+//    gpio18.reset();                        // sets header to low
+//    gpio18.unexport();                     // unexport the header
+//
+//    gpio24.reset();
+//    gpio24.unexport(function() {
+//       // unexport takes a callback which gets fired as soon as unexporting is done
+//       process.exit(); // exits your node program
+//    });
+// }, 10000);
 
 
 function processTest(args) {
