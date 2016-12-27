@@ -95,6 +95,7 @@ function processTest(args) {
    } else {
       device.subscribe('topic_2');
    }
+   device.subscribe('led');
    if ((Math.max(args.delay, minimumDelay)) !== args.delay) {
       console.log('substituting ' + minimumDelay + 'ms delay for ' + args.delay + 'ms...');
    }
