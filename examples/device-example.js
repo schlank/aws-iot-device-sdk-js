@@ -67,7 +67,11 @@ gpio24.set(function() {
    console.log("gpio24.value");    // should log 1
    console.log(gpio24.value);    // should log 1
 });
-
+// bind to the "change" event
+gpio18.on("change", function(val) {
+   // value will report either 1 or 0 (number) when the value changes
+   console.log(val)
+});
 
 
 function processTest(args) {
