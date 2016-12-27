@@ -33,16 +33,16 @@ gpio18 = gpio.export(18, {
    }
 });
 
-// Lets assume a different LED is hooked up to pin 4, the following code
-// will make that LED blink inversely with LED from pin 22
-gpio24 = gpio.export(23, {
-   ready: function() {
-      // bind to gpio18's change event
-      gpio18.on("change", function(val) {
-         gpio24.set(1 - val); // set gpio24 to the opposite value
-      });
-   }
-});
+// // Lets assume a different LED is hooked up to pin 4, the following code
+// // will make that LED blink inversely with LED from pin 22
+// gpio24 = gpio.export(23, {
+//    ready: function() {
+//       // bind to gpio18's change event
+//       gpio18.on("change", function(val) {
+//          gpio24.set(1 - val); // set gpio24 to the opposite value
+//       });
+//    }
+// });
 
 // reset the headers and unexport after 10 seconds
 setTimeout(function() {
