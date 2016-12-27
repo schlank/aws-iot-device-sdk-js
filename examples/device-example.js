@@ -30,6 +30,7 @@ blueButtonGpio = gpio.export(6, {
    }
 });
 blueButtonGpio.on("change",function (value) {
+   console.log(value);
    blueLedGpio.set();
    setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
