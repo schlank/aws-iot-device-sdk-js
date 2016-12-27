@@ -26,9 +26,9 @@ const cmdLineProcess = require('./lib/cmdline');
 var gpio = require("gpio");
 var gpio18, gpio24, intervalTimer;
 
-gpio18 = gpio.export(18, {
+gpio18 = gpio.export(23, {
    ready: function() {
-      intervalTimer = setInterval(function() {
+   intervalTimer = setInterval(function() {
       }, 1000);
    }
 });
@@ -139,11 +139,7 @@ function processTest(args) {
             gpio18.set();
             setTimeout(function() { gpio18.reset(); }, 2000);
          }
-
          console.log('message', topic, payload.toString());
-
-
-
       });
 }
 
