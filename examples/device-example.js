@@ -14,6 +14,14 @@
  */
 
 //node.js deps
+var gpio = require("pi-gpio")
+
+gpio.open(18, "output", function () {
+   console.log('GPIO 18 Open for output');
+});
+gpio.open(24, "output", function () {
+   console.log('GPIO 24 Open for output');
+});
 
 //npm deps
 
@@ -78,7 +86,7 @@ function processTest(args) {
    //
    device
       .on('connect', function() {
-         console.log('connect');
+         console.log('connected');
       });
    device
       .on('close', function() {
@@ -100,7 +108,6 @@ function processTest(args) {
       .on('message', function(topic, payload) {
          console.log('message', topic, payload.toString());
       });
-
 }
 
 module.exports = cmdLineProcess;
