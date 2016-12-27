@@ -15,6 +15,8 @@
 
 //node.js deps
 var gpio = require("pi-gpio");
+const deviceModule = require('..').device;
+const cmdLineProcess = require('./lib/cmdline');
 //npm deps
 
 //app deps
