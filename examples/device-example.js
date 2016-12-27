@@ -135,7 +135,7 @@ function processTest(args) {
    device
       .on('message', function(topic, payload) {
 
-         if(topic == "topic_2") {
+         if(topic == "topic_1") {
             gpio18.set();
             setTimeout(function() { gpio18.reset(); }, 2000);
          }
