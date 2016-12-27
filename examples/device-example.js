@@ -60,8 +60,14 @@ var gpio24 = gpio.export(24, {
 });
 
 gpio18.set(function() {
+   console.log("gpio18.value");    // should log 1
    console.log(gpio18.value);    // should log 1
 });
+gpio24.set(function() {
+   console.log("gpio24.value");    // should log 1
+   console.log(gpio24.value);    // should log 1
+});
+
 
 
 function processTest(args) {
