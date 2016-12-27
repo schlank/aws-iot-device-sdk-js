@@ -29,7 +29,7 @@ blueButtonGpio = gpio.export(6, {
       console.log("Blue Button Ready");
    }
 });
-blueButtonGpio.read(6, function (err, value) {
+gpio.read(6, function (err, value) {
    if(err) throw err;
    blueLedGpio.set();
    setTimeout(function() { blueLedGpio.reset(); }, 2000);
