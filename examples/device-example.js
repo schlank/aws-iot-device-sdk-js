@@ -24,21 +24,29 @@ const cmdLineProcess = require('./lib/cmdline');
 //begin module
 
 var gpio = require("gpio");
-var gpio18, gpio24, intervalTimer;
+var blueLedGpio, yellowLedGpio, intervalTimer;
 
-gpio18 = gpio.export(23, {
+blueLedGpio = gpio.export(23, {
    ready: function() {
-   intervalTimer = setInterval(function() {
+      console.log("Blue LED Ready");
+      intervalTimer = setInterval(function() {
       }, 1000);
    }
 });
+
+yellowLedGpio = gpio.export(24, {
+   ready: function() {
+      console.log("Yellow LED Ready");
+   }
+});
+
 
 // // Lets assume a different LED is hooked up to pin 4, the following code
 // // will make that LED blink inversely with LED from pin 22
 // gpio24 = gpio.export(23, {
 //    ready: function() {
-//       // bind to gpio18's change event
-//       gpio18.on("change", function(val) {
+//       // bind to blueLedGpio's change event
+//       blueLedGpio.on("change", function(val) {
 //          gpio24.set(1 - val); // set gpio24 to the opposite value
 //       });
 //    }
@@ -47,9 +55,9 @@ gpio18 = gpio.export(23, {
 // // reset the headers and unexport after 10 seconds
 // setTimeout(function() {
 //    clearInterval(intervalTimer);          // stops the voltage cycling
-//    gpio18.removeAllListeners('change');   // unbinds change event
-//    gpio18.reset();                        // sets header to low
-//    gpio18.unexport();                     // unexport the header
+//    blueLedGpio.removeAllListeners('change');   // unbinds change event
+//    blueLedGpio.reset();                        // sets header to low
+//    blueLedGpio.unexport();                     // unexport the header
 //
 //    gpio24.reset();
 //    gpio24.unexport(function() {
@@ -135,9 +143,19 @@ function processTest(args) {
    device
       .on('message', function(topic, payload) {
 
-         if(topic == "topic_1") {
-            gpio18.set();
-            setTimeout(function() { gpio18.reset(); }, 2000);
+         if(topic == "led") {
+
+            if(payload!=null) {
+               if(payload.led == "yellow") {
+                  yellowLedGpio.set();
+                  setTimeout(function() { yellowLedGpio.reset(); }, 2000);
+               }
+               if(payload.led == "blue") {
+                  blueLedGpio.set();
+                  setTimeout(function() { blueLedGpio.reset(); }, 2000);
+               }
+
+            }
          }
          console.log('message', topic, payload.toString());
       });
