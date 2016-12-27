@@ -23,55 +23,43 @@ const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
 
-// Calling export with a pin number will export that header and return a gpio header instance
-var gpio18 = gpio.export(18, {
-   // When you export a pin, the default direction is out. This allows you to set
-   // the pin value to either LOW or HIGH (3.3V) from your program.
-   direction: 'out',
+var gpio = require("gpio");
+var gpio18, gpio24, intervalTimer;
 
-   // set the time interval (ms) between each read when watching for value changes
-   // note: this is default to 100, setting value too low will cause high CPU usage
-   interval: 200,
-
-   // Due to the asynchronous nature of exporting a header, you may not be able to
-   // read or write to the header right away. Place your logic in this ready
-   // function to guarantee everything will get fired properly
+// Flashing lights if LED connected to GPIO22
+gpio18 = gpio.export(22, {
    ready: function() {
-      console.log("18 Ready")
+      intervalTimer = setInterval(function() {
+         gpio18.set();
+         setTimeout(function() { gpio18.reset(); }, 500);
+      }, 1000);
    }
 });
 
-// Calling export with a pin number will export that header and return a gpio header instance
-var gpio24 = gpio.export(24, {
-   // When you export a pin, the default direction is out. This allows you to set
-   // the pin value to either LOW or HIGH (3.3V) from your program.
-   direction: 'out',
-
-   // set the time interval (ms) between each read when watching for value changes
-   // note: this is default to 100, setting value too low will cause high CPU usage
-   interval: 200,
-
-   // Due to the asynchronous nature of exporting a header, you may not be able to
-   // read or write to the header right away. Place your logic in this ready
-   // function to guarantee everything will get fired properly
+// Lets assume a different LED is hooked up to pin 4, the following code
+// will make that LED blink inversely with LED from pin 22
+gpio24 = gpio.export(4, {
    ready: function() {
-      console.log("24 Ready")
+      // bind to gpio18's change event
+      gpio18.on("change", function(val) {
+         gpio24.set(1 - val); // set gpio24 to the opposite value
+      });
    }
 });
 
-gpio18.set(function() {
-   console.log("gpio18.value");    // should log 1
-   console.log(gpio18.value);    // should log 1
-});
-gpio24.set(function() {
-   console.log("gpio24.value");    // should log 1
-   console.log(gpio24.value);    // should log 1
-});
-// bind to the "change" event
-gpio18.on("change", function(val) {
-   // value will report either 1 or 0 (number) when the value changes
-   console.log(val)
-});
+// reset the headers and unexport after 10 seconds
+setTimeout(function() {
+   clearInterval(intervalTimer);          // stops the voltage cycling
+   gpio18.removeAllListeners('change');   // unbinds change event
+   gpio18.reset();                        // sets header to low
+   gpio18.unexport();                     // unexport the header
+
+   gpio24.reset();
+   gpio24.unexport(function() {
+      // unexport takes a callback which gets fired as soon as unexporting is done
+      process.exit(); // exits your node program
+   });
+}, 10000)
 
 
 function processTest(args) {
