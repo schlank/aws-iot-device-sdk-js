@@ -14,7 +14,7 @@
  */
 
 //node.js deps
-var gpio = require('pi-gpio');
+var gpio = require('gpio');
 //npm deps
 
 //app deps
@@ -29,11 +29,10 @@ blueButtonGpio = gpio.export(6, {
       console.log("Blue Button Ready");
    }
 });
-gpio.read(6, function (err, value) {
-   if(err) throw err;
+blueButtonGpio.on("change",function (value) {
    blueLedGpio.set();
    setTimeout(function() { blueLedGpio.reset(); }, 2000);
-})
+});
 
 blueLedGpio = gpio.export(23, {
    ready: function() {
