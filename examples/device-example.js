@@ -145,12 +145,12 @@ function processTest(args) {
          if(topic == "led") {
             console.log("led");
             if(payload!=null) {
-               console.log(payload);
-               if(payload.color == "yellow") {
+               var jsonPayload = JSON.parse(payload.toString());
+               if(jsonPayload.color == "yellow") {
                   yellowLedGpio.set();
                   setTimeout(function() { yellowLedGpio.reset(); }, 2000);
                }
-               if(payload.color == "blue") {
+               if(jsonPayload.color == "blue") {
                   blueLedGpio.set();
                   setTimeout(function() { blueLedGpio.reset(); }, 2000);
                }
