@@ -14,13 +14,18 @@
  */
 
 //node.js deps
-var gpio = require("pi-gpio")
-
-gpio.open(18, "output", function () {
-   console.log('GPIO 18 Open for output');
+var raspi = require('raspi-io');
+var five = require('johnny-five');
+var board = new five.Board({
+   io: new raspi()
 });
-gpio.open(24, "output", function () {
-   console.log('GPIO 24 Open for output');
+
+board.on('ready', function() {
+
+   // Create an Led on pin 7 (GPIO4) on P1 and strobe it on/off
+   // Optionally set the speed; defaults to 100ms
+   (new five.Led('P1-7')).strobe();
+
 });
 
 //npm deps
