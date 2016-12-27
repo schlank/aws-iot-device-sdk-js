@@ -14,7 +14,7 @@
  */
 
 //node.js deps
-var gpio = require('gpio');
+var gpio = require('pi-gpio');
 //npm deps
 
 //app deps
