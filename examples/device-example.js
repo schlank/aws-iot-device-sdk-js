@@ -14,52 +14,17 @@
  */
 
 //node.js deps
-var gpio = require('gpio');
+var gpio = require("pi-gpio");
 //npm deps
 
 //app deps
-const deviceModule = require('..').device;
-const cmdLineProcess = require('./lib/cmdline');
-
-//begin module
-
-var gpio = require("gpio");
-var gpio18, gpio24, intervalTimer;
-
-// Flashing lights if LED connected to GPIO22
-gpio18 = gpio.export(18, {
-   ready: function() {
-      intervalTimer = setInterval(function() {
-         gpio18.set();
-         setTimeout(function() { gpio18.reset(); }, 500);
-      }, 1000);
-   }
-});
-
-// Lets assume a different LED is hooked up to pin 4, the following code
-// will make that LED blink inversely with LED from pin 22
-gpio24 = gpio.export(23, {
-   ready: function() {
-      // bind to gpio18's change event
-      gpio18.on("change", function(val) {
-         gpio24.set(1 - val); // set gpio24 to the opposite value
-      });
-   }
-});
-
-// reset the headers and unexport after 10 seconds
-setTimeout(function() {
-   clearInterval(intervalTimer);          // stops the voltage cycling
-   gpio18.removeAllListeners('change');   // unbinds change event
-   gpio18.reset();                        // sets header to low
-   gpio18.unexport();                     // unexport the header
-
-   gpio24.reset();
-   gpio24.unexport(function() {
-      // unexport takes a callback which gets fired as soon as unexporting is done
-      process.exit(); // exits your node program
+gpio.open(18, "output", function(err) {		// Open pin 18 for output
+   console.log("10 open");
+   gpio.write(18, 1, function() {			// Set pin 18 high (1)
+      // gpio.close(18);
+      console.log("18 write 1");
    });
-}, 10000)
+});
 
 
 function processTest(args) {
