@@ -15,6 +15,7 @@
 
 //node.js deps
 var gpio = require('gpio');
+var Button = require('gpio-button');
 //npm deps
 
 //app deps
@@ -22,7 +23,23 @@ const deviceModule = require('..').device;
 const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
-var blueLedGpio, yellowLedGpio, blueButtonGpio, intervalTimer;
+var blueLedGpio, yellowLedGpio, intervalTimer;
+var blueButtonGpio = new Button('button13');
+
+blueButtonGpio.on('press', function () {
+   console.log(val);
+   blueLedGpio.set();
+   setTimeout(function() { blueLedGpio.reset(); }, 2000);
+});
+
+blueButtonGpio.on('hold', function () {
+   blueLedGpio.set();
+});
+
+blueButtonGpio.on('release', function () {
+   blueLedGpio.set(0);
+   console.log('release');
+});
 
 blueButtonGpio = gpio.export(13, {
    ready: function() {
@@ -48,8 +65,6 @@ yellowLedGpio = gpio.export(24, {
       console.log("Yellow LED Ready");
       yellowLedGpio.on("change", function (val) {
          console.log(val);
-         blueLedGpio.set();
-         setTimeout(function() { blueLedGpio.reset(); }, 2000);
       });
 
    }
