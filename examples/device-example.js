@@ -30,16 +30,14 @@ var button19 = new Button('button19');
 var button26 = new Button('button26');
 
 button26.on('press', function () {
-   blueLedGpio.set();
-   console.log('button26 press');
 });
 
 button26.on('hold', function () {
 });
 
 button26.on('release', function () {
-   blueLedGpio.set(0);
-   console.log('button26 press');
+   blueLedGpio.set();
+   console.log('button26 release');
 });
 
 button19.on('press', function () {
