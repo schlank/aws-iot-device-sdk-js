@@ -34,7 +34,7 @@ button6.on('press', function () {
 
 button6.on('hold', function () {
    blueLedGpio.set();
-   console.log('hold');
+   console.log('6 hold');
 });
 
 button6.on('release', function () {
