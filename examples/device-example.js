@@ -59,6 +59,8 @@ button13.on('release', function () {
 });
 
 button6.on('press', function () {
+   blueLedGpio.set(0);
+   console.log('button6 press');
 });
 
 button6.on('hold', function () {
