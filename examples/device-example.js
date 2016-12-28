@@ -144,7 +144,7 @@ function processTest(args) {
    }, Math.max(args.delay, minimumDelay)); // clip to minimum
 
    button6.on('press', function () {
-      blueLedGpio.set(0);
+      // blueLedGpio.set(0);
       console.log('button6 press');
    });
 
@@ -160,7 +160,7 @@ function processTest(args) {
 
    button19.on('press', function () {
       console.log('button19 press');
-      yellowLedGpio.set(0);
+      // yellowLedGpio.set(0);
 
    });
 
