@@ -50,7 +50,9 @@ button19.on('hold', function () {
 });
 
 button19.on('release', function () {
-   yellowLedGpio.set(1);
+   device.publish('led', JSON.stringify({
+      "color":"yellow"
+   }));
    console.log('button19 release');
 });
 
@@ -74,7 +76,9 @@ button6.on('hold', function () {
 });
 
 button6.on('release', function () {
-   blueLedGpio.set();
+   device.publish('led', JSON.stringify({
+      "color":"blue"
+   }));
    console.log('button6 release');
 });
 
