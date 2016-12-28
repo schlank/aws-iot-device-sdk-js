@@ -30,32 +30,37 @@ var button19 = new Button('button19');
 var button26 = new Button('button26');
 
 button26.on('press', function () {
+   console.log('button26 press');
 });
 
 button26.on('hold', function () {
 });
 
 button26.on('release', function () {
-   blueLedGpio.set();
    console.log('button26 release');
 });
 
 button19.on('press', function () {
+   console.log('button19 press');
+
 });
 
 button19.on('hold', function () {
 });
 
 button19.on('release', function () {
+   console.log('button19 release');
 });
 
 button13.on('press', function () {
+   console.log('button13 release');
 });
 
 button13.on('hold', function () {
 });
 
 button13.on('release', function () {
+   console.log('button13 release');
 });
 
 button6.on('press', function () {
