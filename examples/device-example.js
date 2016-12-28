@@ -30,58 +30,40 @@ var button19 = new Button('button19');
 var button26 = new Button('button26');
 
 button26.on('press', function () {
-   console.log('press button26');
+   blueLedGpio.set();
+   console.log('button26 press');
 });
 
 button26.on('hold', function () {
-   console.log('button26 hold');
 });
 
 button26.on('release', function () {
-   console.log('button26 release');
+   blueLedGpio.set(0);
+   console.log('button26 press');
 });
 
 button19.on('press', function () {
-   console.log('press button19');
-   yellowLedGpio.set();
-   setTimeout(function() { yellowLedGpio.reset(); }, 2000);
 });
 
 button19.on('hold', function () {
-   yellowLedGpio.set();
-   console.log('button19 hold');
 });
 
 button19.on('release', function () {
-   yellowLedGpio.set(0);
-   console.log('button19 release');
 });
 
 button13.on('press', function () {
-   console.log('press button13');
-   blueLedGpio.set();
-   setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
 
 button13.on('hold', function () {
-   blueLedGpio.set();
-   console.log('button13 hold');
 });
 
 button13.on('release', function () {
-   blueLedGpio.set(0);
-   console.log('button13 release');
 });
 
 button6.on('press', function () {
-   console.log('press');
-   blueLedGpio.set();
-   setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
 
 button6.on('hold', function () {
-   blueLedGpio.set();
-   console.log('6 hold');
 });
 
 button6.on('release', function () {
