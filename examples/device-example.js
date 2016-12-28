@@ -24,19 +24,19 @@ const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
 var blueLedGpio, yellowLedGpio, intervalTimer;
-var button13 = new Button('button13');
+var button6 = new Button('button6');
 
-button13.on('press', function () {
+button6.on('press', function () {
    console.log(val);
    blueLedGpio.set();
    setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
 
-button13.on('hold', function () {
+button6.on('hold', function () {
    blueLedGpio.set();
 });
 
-button13.on('release', function () {
+button6.on('release', function () {
    blueLedGpio.set(0);
    console.log('release');
 });
