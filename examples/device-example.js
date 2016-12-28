@@ -42,7 +42,7 @@ button26.on('release', function () {
 
 button19.on('press', function () {
    console.log('button19 press');
-   yellowLedGpio.set();
+   yellowLedGpio.set(0);
 
 });
 
@@ -50,7 +50,7 @@ button19.on('hold', function () {
 });
 
 button19.on('release', function () {
-   yellowLedGpio.set(0);
+   yellowLedGpio.set(1);
    console.log('button19 release');
 });
 
