@@ -40,22 +40,6 @@ button26.on('release', function () {
    console.log('button26 release');
 });
 
-button19.on('press', function () {
-   console.log('button19 press');
-   yellowLedGpio.set(0);
-
-});
-
-button19.on('hold', function () {
-});
-
-button19.on('release', function () {
-   device.publish('led', JSON.stringify({
-      "color":"yellow"
-   }));
-   console.log('button19 release');
-});
-
 button13.on('press', function () {
    console.log('button13 release');
 });
@@ -65,21 +49,6 @@ button13.on('hold', function () {
 
 button13.on('release', function () {
    console.log('button13 release');
-});
-
-button6.on('press', function () {
-   blueLedGpio.set(0);
-   console.log('button6 press');
-});
-
-button6.on('hold', function () {
-});
-
-button6.on('release', function () {
-   device.publish('led', JSON.stringify({
-      "color":"blue"
-   }));
-   console.log('button6 release');
 });
 
 blueLedGpio = gpio.export(23, {
@@ -174,6 +143,36 @@ function processTest(args) {
       }
    }, Math.max(args.delay, minimumDelay)); // clip to minimum
 
+   button6.on('press', function () {
+      blueLedGpio.set(0);
+      console.log('button6 press');
+   });
+
+   button6.on('hold', function () {
+   });
+
+   button6.on('release', function () {
+      device.publish('led', JSON.stringify({
+         "color":"blue"
+      }));
+      console.log('button6 release');
+   });
+
+   button19.on('press', function () {
+      console.log('button19 press');
+      yellowLedGpio.set(0);
+
+   });
+
+   button19.on('hold', function () {
+   });
+
+   button19.on('release', function () {
+      device.publish('led', JSON.stringify({
+         "color":"yellow"
+      }));
+      console.log('button19 release');
+   });
    //
    // Do a simple publish/subscribe demo based on the test-mode passed
    // in the command line arguments.  If test-mode is 1, subscribe to
