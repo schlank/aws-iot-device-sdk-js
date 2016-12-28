@@ -144,7 +144,10 @@ function processTest(args) {
    }, Math.max(args.delay, minimumDelay)); // clip to minimum
 
    button6.on('press', function () {
-      // blueLedGpio.set(0);
+      device.publish('led', JSON.stringify({
+         "color":"blue",
+         "state":"off"
+      }));
       console.log('button6 press');
    });
 
@@ -153,12 +156,17 @@ function processTest(args) {
 
    button6.on('release', function () {
       device.publish('led', JSON.stringify({
-         "color":"blue"
+         "color":"blue",
+         "state":"on"
       }));
       console.log('button6 release');
    });
 
    button19.on('press', function () {
+      device.publish('led', JSON.stringify({
+         "color":"yellow",
+         "state":"off"
+      }));
       console.log('button19 press');
       // yellowLedGpio.set(0);
 
@@ -169,7 +177,8 @@ function processTest(args) {
 
    button19.on('release', function () {
       device.publish('led', JSON.stringify({
-         "color":"yellow"
+         "color":"yellow",
+         "state":"on"
       }));
       console.log('button19 release');
    });
