@@ -44,7 +44,7 @@ button26.on('release', function () {
 button19.on('press', function () {
    console.log('press button19');
    yellowLedGpio.set();
-   setTimeout(function() { blueLedGpio.reset(); }, 2000);
+   setTimeout(function() { yellowLedGpio.reset(); }, 2000);
 });
 
 button19.on('hold', function () {
