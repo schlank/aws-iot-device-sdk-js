@@ -216,12 +216,20 @@ function processTest(args) {
             if(payload!=null) {
                var jsonPayload = JSON.parse(payload.toString());
                if(jsonPayload.color == "yellow") {
-                  yellowLedGpio.set();
-                  setTimeout(function() { yellowLedGpio.reset(); }, 2000);
+                  if(jsonPayload.state=="on") {
+                     yellowLedGpio.set();
+                  }
+                  else {
+                     yellowLedGpio.set(0);
+                  }
                }
                if(jsonPayload.color == "blue") {
-                  blueLedGpio.set();
-                  setTimeout(function() { blueLedGpio.reset(); }, 2000);
+                  if(jsonPayload.state=="on") {
+                     blueLedGpio.set();
+                  }
+                  else {
+                     blueLedGpio.set(0);
+                  }
                }
 
             }
