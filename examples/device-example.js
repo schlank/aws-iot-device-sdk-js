@@ -65,8 +65,8 @@ button6.on('hold', function () {
 });
 
 button6.on('release', function () {
-   blueLedGpio.set(0);
-   console.log('release');
+   blueLedGpio.set();
+   console.log('button6 release');
 });
 
 blueLedGpio = gpio.export(23, {
