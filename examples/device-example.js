@@ -27,13 +27,14 @@ var blueLedGpio, yellowLedGpio, intervalTimer;
 var button6 = new Button('button6');
 
 button6.on('press', function () {
-   console.log(val);
+   console.log('press');
    blueLedGpio.set();
    setTimeout(function() { blueLedGpio.reset(); }, 2000);
 });
 
 button6.on('hold', function () {
    blueLedGpio.set();
+   console.log('hold');
 });
 
 button6.on('release', function () {
