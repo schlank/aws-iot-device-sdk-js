@@ -120,7 +120,7 @@ function processTest(args) {
    var count = 0;
    const minimumDelay = 250;
 
-   console.log('device:', device);
+   console.log('device:', device.clientId);
    if (args.testMode === 1) {
       device.subscribe('topic_1');
    } else {
