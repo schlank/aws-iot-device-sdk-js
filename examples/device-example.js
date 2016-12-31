@@ -214,6 +214,7 @@ function processTest(args) {
 
          if(topic == "led") {
             console.log("led");
+            console.log("payload: ", payload)
             if(payload!=null) {
                var jsonPayload = JSON.parse(payload.toString());
                if(jsonPayload.color == "yellow") {
