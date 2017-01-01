@@ -211,10 +211,7 @@ function processTest(args) {
       });
    device
       .on('message', function(topic, payload) {
-
          if(topic == "led") {
-            console.log("led");
-            console.log("payload: ", payload)
             if(payload!=null) {
                var jsonPayload = JSON.parse(payload.toString());
                if(jsonPayload.color == "yellow") {
