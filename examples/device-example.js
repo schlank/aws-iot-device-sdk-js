@@ -126,6 +126,7 @@ function processTest(args) {
       device.subscribe('topic_2');
    }
    device.subscribe('led');
+   device.subscribe('$aws/things/UberHome/shadow/update');
    if ((Math.max(args.delay, minimumDelay)) !== args.delay) {
       console.log('substituting ' + minimumDelay + 'ms delay for ' + args.delay + 'ms...');
    }
