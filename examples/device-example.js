@@ -27,6 +27,7 @@ var gpio22Relay, blueLedGpio, yellowLedGpio, intervalTimer;
 var button6 = new Button('button6');
 var button13 = new Button('button13');
 var button19 = new Button('button19');
+var button26 = new Button('button26');
 
 button26.on('press', function () {
    console.log('button26 press');
