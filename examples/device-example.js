@@ -238,12 +238,12 @@ function processTest(args) {
                else if(jsonPayload.state=="on") {
                   blueLedGpio.set();
                   yellowLedGpio.set();
-                  button22.set();
+                  gpio22Relay.set();
                }
                else if(jsonPayload.state=="off") {
                   blueLedGpio.set(0);
                   yellowLedGpio.set(0);
-                  button22.set(0);
+                  gpio22Relay.set(0);
                }
             }
          }
