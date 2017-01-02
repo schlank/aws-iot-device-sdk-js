@@ -7,8 +7,8 @@
     fragment@0 {
         target = <&gpio>;
         __overlay__ {
-            button26_pin: button26_pin {
-                brcm,pins = <26>;     /* gpio26 */
+            button22_pin: button22_pin {
+                brcm,pins = <22>;     /* gpio22 */
                 brcm,function = <0>; /* input */
                 brcm,pull = <1>;     /* pull-down */
             };
@@ -18,19 +18,19 @@
     fragment@1 {
     target-path = "/soc";
         __overlay__ {
-            button26: button26 {
+            button22: button22 {
                 compatible = "gpio-keys";
                 #address-cells = <1>;
                 #size-cells = <0>;
                 pinctrl-names = "default";
-                pinctrl-0 = <&button26_pin>;
+                pinctrl-0 = <&button22_pin>;
                 status = "okay";
                 autorepeat;
 
-                button@26 {
-                    label = "button gpio26";
-                    linux,code = <26>;
-                    gpios = <&gpio 26 0>;
+                button@22 {
+                    label = "button gpio22";
+                    linux,code = <22>;
+                    gpios = <&gpio 22 0>;
                 };
             };
         };

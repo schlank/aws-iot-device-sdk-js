@@ -28,6 +28,7 @@ var button6 = new Button('button6');
 var button13 = new Button('button13');
 var button19 = new Button('button19');
 var button26 = new Button('button26');
+var button26 = new Button('button26');
 
 button26.on('press', function () {
    console.log('button26 press');
@@ -169,8 +170,6 @@ function processTest(args) {
          "state":"off"
       }));
       console.log('button19 press');
-      // yellowLedGpio.set(0);
-
    });
 
    button19.on('hold', function () {
@@ -238,7 +237,6 @@ function processTest(args) {
                   blueLedGpio.set(0);
                   yellowLedGpio.set(0);
                }
-
             }
          }
          else {
