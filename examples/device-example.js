@@ -222,13 +222,21 @@ function processTest(args) {
                      yellowLedGpio.set(0);
                   }
                }
-               if(jsonPayload.color == "blue") {
+               else if(jsonPayload.color == "blue") {
                   if(jsonPayload.state=="on") {
                      blueLedGpio.set();
                   }
                   else {
                      blueLedGpio.set(0);
                   }
+               }
+               else if(jsonPayload.state=="on") {
+                  blueLedGpio.set();
+                  yellowLedGpio.set();
+               }
+               else if(jsonPayload.state=="off") {
+                  blueLedGpio.set(0);
+                  yellowLedGpio.set(0);
                }
 
             }
