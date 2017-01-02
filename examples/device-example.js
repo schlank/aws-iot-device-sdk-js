@@ -23,12 +23,10 @@ const deviceModule = require('..').device;
 const cmdLineProcess = require('./lib/cmdline');
 
 //begin module
-var blueLedGpio, yellowLedGpio, intervalTimer;
+var gpio22Relay, blueLedGpio, yellowLedGpio, intervalTimer;
 var button6 = new Button('button6');
 var button13 = new Button('button13');
 var button19 = new Button('button19');
-var button26 = new Button('button26');
-var button22 = new Button('button22');
 
 button26.on('press', function () {
    console.log('button26 press');
@@ -68,10 +66,10 @@ yellowLedGpio = gpio.export(24, {
       });
    }
 });
-button22 = gpio.export(22, {
+gpio22Relay = gpio.export(22, {
    ready: function() {
-      console.log("Yellow LED Ready");
-      button22.on("change", function (val) {
+      console.log("gpio22Relay");
+      gpio22Relay.on("change", function (val) {
          console.log(val);
       });
    }
