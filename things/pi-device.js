@@ -20,7 +20,7 @@ var Button = require('gpio-button');
 
 //app deps
 const deviceModule = require('..').device;
-const cmdLineProcess = require('./../lib/cmdline');
+const cmdLineProcess = require('../lib/cmdline');
 
 //begin module
 var gpio22Relay, blueLedGpio, yellowLedGpio, intervalTimer;
