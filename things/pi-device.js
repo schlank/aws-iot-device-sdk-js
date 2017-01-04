@@ -18,8 +18,9 @@ var gpio = require('gpio');
 var Button = require('gpio-button');
 //npm deps
 
+const deviceModule = require('../device');
 //app deps
-const deviceModule = require('..').device;
+// const deviceModule = require('..').device;
 const cmdLineProcess = require('../lib/cmdline');
 
 //begin module
